@@ -1,0 +1,6 @@
+@FlavourAtlas.Api_HostAddress = http://localhost:5269
+
+GET {{FlavourAtlas.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,12 @@
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\bin\Debug\net8.0\FlavourAtlas.Domain.deps.json
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\bin\Debug\net8.0\FlavourAtlas.Domain.dll
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\bin\Debug\net8.0\FlavourAtlas.Domain.pdb
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.AssemblyInfoInputs.cache
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.AssemblyInfo.cs
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.csproj.CoreCompileInputs.cache
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.sourcelink.json
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.dll
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\refint\FlavourAtlas.Domain.dll
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\FlavourAtlas.Domain.pdb
+C:\Users\asemo\source\repos\FlavourAtlas\FlavourAtlas\FlavourAtlas.Domain\obj\Debug\net8.0\ref\FlavourAtlas.Domain.dll

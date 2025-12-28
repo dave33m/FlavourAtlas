@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FlavourAtlas.Infrastructure/1.0.0": {
+        "dependencies": {
+          "FlavourAtlas.Application": "1.0.0",
+          "FlavourAtlas.Domain": "1.0.0"
+        },
+        "runtime": {
+          "FlavourAtlas.Infrastructure.dll": {}
+        }
+      },
+      "FlavourAtlas.Application/1.0.0": {
+        "dependencies": {
+          "FlavourAtlas.Domain": "1.0.0"
+        },
+        "runtime": {
+          "FlavourAtlas.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "FlavourAtlas.Domain/1.0.0": {
+        "runtime": {
+          "FlavourAtlas.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FlavourAtlas.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FlavourAtlas.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FlavourAtlas.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
