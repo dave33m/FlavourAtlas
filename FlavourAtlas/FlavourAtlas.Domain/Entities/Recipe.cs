@@ -17,5 +17,8 @@ namespace FlavourAtlas.Domain.Entities
 
         public Guid RegionId { get; private set; }
         public Region Region { get; private set; } = default!;
+
+        public ICollection<RecipeIngredient> Ingredients { get; private set; }
+            = new List<RecipeIngredient>();
     }
 }
