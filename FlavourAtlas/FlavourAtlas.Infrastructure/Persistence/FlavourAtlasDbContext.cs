@@ -17,7 +17,33 @@ public class FlavourAtlasDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(FlavourAtlasDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<RecipeIngredient>(entity =>
+        {
+            entity.HasKey(x => new { x.RecipeId, x.IngredientId });
+
+            entity.HasOne(x => x.Recipe)
+                .WithMany(r => r.Ingredients)
+                .HasForeignKey(x => x.RecipeId);
+
+            entity.HasOne(x => x.Ingredient)
+                .WithMany()
+                .HasForeignKey(x => x.IngredientId);
+        });
+        modelBuilder.Entity<SavedRecipe>(entity =>
+        {
+            entity.HasKey(x => new { x.UserId, x.RecipeId });
+
+            entity.HasOne(x => x.User)
+                .WithMany()
+                .HasForeignKey(x => x.UserId);
+
+            entity.HasOne(x => x.Recipe)
+                .WithMany()
+                .HasForeignKey(x => x.RecipeId);
+        });
+
     }
+
 }
