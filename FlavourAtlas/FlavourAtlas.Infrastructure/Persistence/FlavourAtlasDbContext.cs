@@ -14,6 +14,7 @@ public class FlavourAtlasDbContext : DbContext
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<RecipeIngredient> RecipeIngredients => Set<RecipeIngredient>();
     public DbSet<SavedRecipe> SavedRecipes => Set<SavedRecipe>();
+    public DbSet<Region> Regions => Set<Region>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,7 +37,7 @@ public class FlavourAtlasDbContext : DbContext
             entity.HasKey(x => new { x.UserId, x.RecipeId });
 
             entity.HasOne(x => x.User)
-                .WithMany()
+                .WithMany(u => u.SavedRecipes)
                 .HasForeignKey(x => x.UserId);
 
             entity.HasOne(x => x.Recipe)

@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FlavourAtlas.Domain.Entities;
 
-namespace FlavourAtlas.Domain.Entities
+public class Region
 {
-    public class Region
+    public Guid Id { get; private set; }
+    public string Name { get; private set; } = default!;
+
+    private Region() { } // EF Core
+
+    public Region(string name)
     {
-        public Guid Id { get; private set; }
-        public string Name { get; private set; } = default!;
+        Id = Guid.NewGuid();
+        Name = name;
     }
 }

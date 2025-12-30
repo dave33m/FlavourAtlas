@@ -14,8 +14,12 @@ public sealed class RecipeRepository : IRecipeRepository
         _db = db;
     }
 
-    public async Task AddAsync(Recipe recipe, CancellationToken ct) =>
-        await _db.Recipes.AddAsync(recipe, ct);
+    public Task AddAsync(Recipe recipe, CancellationToken ct)
+    {
+        _db.Recipes.Add(recipe);
+        return Task.CompletedTask;
+    }
+
 
     public async Task SaveAsync(CancellationToken ct) =>
         await _db.SaveChangesAsync(ct);

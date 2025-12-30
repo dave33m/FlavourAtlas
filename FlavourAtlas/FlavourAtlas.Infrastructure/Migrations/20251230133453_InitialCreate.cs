@@ -24,19 +24,6 @@ namespace FlavourAtlas.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MealPlans",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    WeekStartDate = table.Column<DateOnly>(type: "date", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MealPlans", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Regions",
                 columns: table => new
                 {
@@ -49,7 +36,7 @@ namespace FlavourAtlas.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -57,7 +44,7 @@ namespace FlavourAtlas.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,39 +69,13 @@ namespace FlavourAtlas.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlannedMeals",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Day = table.Column<int>(type: "integer", nullable: false),
-                    MealType = table.Column<int>(type: "integer", nullable: false),
-                    RecipeId = table.Column<Guid>(type: "uuid", nullable: false),
-                    MealPlanId = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlannedMeals", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlannedMeals_MealPlans_MealPlanId",
-                        column: x => x.MealPlanId,
-                        principalTable: "MealPlans",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_PlannedMeals_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RecipeIngredients",
                 columns: table => new
                 {
                     RecipeId = table.Column<Guid>(type: "uuid", nullable: false),
                     IngredientId = table.Column<Guid>(type: "uuid", nullable: false),
                     Quantity = table.Column<decimal>(type: "numeric", nullable: false),
-                    Unit = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Unit = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,22 +111,12 @@ namespace FlavourAtlas.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SavedRecipes_Users_UserId",
+                        name: "FK_SavedRecipes_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlannedMeals_MealPlanId",
-                table: "PlannedMeals",
-                column: "MealPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlannedMeals_RecipeId",
-                table: "PlannedMeals",
-                column: "RecipeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeIngredients_IngredientId",
@@ -187,16 +138,10 @@ namespace FlavourAtlas.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlannedMeals");
-
-            migrationBuilder.DropTable(
                 name: "RecipeIngredients");
 
             migrationBuilder.DropTable(
                 name: "SavedRecipes");
-
-            migrationBuilder.DropTable(
-                name: "MealPlans");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");
@@ -205,7 +150,7 @@ namespace FlavourAtlas.Infrastructure.Migrations
                 name: "Recipes");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Regions");

@@ -1,10 +1,10 @@
-﻿using FlavourAtlas.Domain.Entities;
+﻿using FlavourAtlas.Application.Recipes;
+using FlavourAtlas.Domain.Entities;
 using FlavourAtlas.Domain.Enums;
-
 
 namespace FlavourAtlas.Application.Recipes.Create;
 
-public sealed class CreateRecipeHandler
+public class CreateRecipeHandler
 {
     private readonly IRecipeRepository _recipes;
 
@@ -16,11 +16,11 @@ public sealed class CreateRecipeHandler
     public async Task<Guid> Handle(CreateRecipeRequest request, CancellationToken ct)
     {
         var recipe = Recipe.Create(
-        request.Name,
-        (DifficultyLevel)request.Difficulty,
-        request.PrepTimeMinutes,
-        request.RegionId
-);
+            request.Name,
+            (DifficultyLevel)request.Difficulty,
+            request.PrepTimeMinutes,
+            request.RegionId
+        );
 
         foreach (var i in request.Ingredients)
         {

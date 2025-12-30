@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using FlavourAtlas.Application.Recipes.Create;
+﻿using FlavourAtlas.Application.Recipes.Create;
+using FlavourAtlas.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlavourAtlas.Api.Controllers;
 
@@ -7,6 +9,13 @@ namespace FlavourAtlas.Api.Controllers;
 [Route("api/[controller]")]
 public class RecipesController : ControllerBase
 {
+    private readonly FlavourAtlasDbContext _db;
+
+    public RecipesController(FlavourAtlasDbContext db)
+    {
+        _db = db;
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateRecipe(
         [FromBody] CreateRecipeRequest request,
@@ -14,7 +23,15 @@ public class RecipesController : ControllerBase
         CancellationToken ct)
     {
         var id = await handler.Handle(request, ct);
-        return CreatedAtAction(nameof(GetRecipeById), new { id }, null);
+
+        return CreatedAtAction(
+            nameof(GetRecipeById),
+            new { id },
+            new
+            {
+                message = "Recipe created successfully",
+                recipeId = id
+            });
     }
 
     [HttpGet("{id:guid}")]
@@ -24,8 +41,35 @@ public class RecipesController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetRecipes()
+    public async Task<IActionResult> GetAll(CancellationToken ct)
     {
-        return Ok();
+        var recipes = await _db.Recipes
+            .AsNoTracking()
+            .Include(r => r.Region)
+            .Include(r => r.Ingredients)
+                .ThenInclude(ri => ri.Ingredient)
+            .OrderByDescending(r => r.Id)
+            .Select(r => new
+            {
+                r.Id,
+                r.Name,
+                r.Difficulty,
+                r.PrepTimeMinutes,
+                Region = new
+                {
+                    r.Region.Id,
+                    r.Region.Name
+                },
+                Ingredients = r.Ingredients.Select(i => new
+                {
+                    i.IngredientId,
+                    i.Ingredient.Name,
+                    i.Quantity,
+                    i.Unit
+                })
+            })
+            .ToListAsync(ct);
+
+        return Ok(recipes);
     }
 }

@@ -37,50 +37,6 @@ namespace FlavourAtlas.Infrastructure.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("FlavourAtlas.Domain.Entities.MealPlan", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateOnly>("WeekStartDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MealPlans");
-                });
-
-            modelBuilder.Entity("FlavourAtlas.Domain.Entities.PlannedMeal", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Day")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid?>("MealPlanId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("MealType")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("RecipeId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MealPlanId");
-
-                    b.HasIndex("RecipeId");
-
-                    b.ToTable("PlannedMeals");
-                });
-
             modelBuilder.Entity("FlavourAtlas.Domain.Entities.Recipe", b =>
                 {
                     b.Property<Guid>("Id")
@@ -120,8 +76,7 @@ namespace FlavourAtlas.Infrastructure.Migrations
 
                     b.Property<string>("Unit")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.HasKey("RecipeId", "IngredientId");
 
@@ -171,22 +126,7 @@ namespace FlavourAtlas.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("FlavourAtlas.Domain.Entities.PlannedMeal", b =>
-                {
-                    b.HasOne("FlavourAtlas.Domain.Entities.MealPlan", null)
-                        .WithMany("Meals")
-                        .HasForeignKey("MealPlanId");
-
-                    b.HasOne("FlavourAtlas.Domain.Entities.Recipe", "Recipe")
-                        .WithMany()
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Recipe");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("FlavourAtlas.Domain.Entities.Recipe", b =>
@@ -236,11 +176,6 @@ namespace FlavourAtlas.Infrastructure.Migrations
                     b.Navigation("Recipe");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FlavourAtlas.Domain.Entities.MealPlan", b =>
-                {
-                    b.Navigation("Meals");
                 });
 
             modelBuilder.Entity("FlavourAtlas.Domain.Entities.Recipe", b =>

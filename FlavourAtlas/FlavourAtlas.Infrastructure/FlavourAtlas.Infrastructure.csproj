@@ -24,4 +24,8 @@
     <ProjectReference Include="..\FlavourAtlas.Domain\FlavourAtlas.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

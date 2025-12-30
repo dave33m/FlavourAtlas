@@ -17,7 +17,9 @@ builder.Services.AddDbContext<FlavourAtlasDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<CreateRecipeHandler>();
+
 
 var app = builder.Build();
 

@@ -31,9 +31,6 @@ public class Recipe
 
     public void AddIngredient(Guid ingredientId, decimal quantity, string unit)
     {
-        var recipeIngredient = new RecipeIngredient(ingredientId, quantity, unit);
-
-        Ingredients.Add(recipeIngredient);
+        Ingredients.Add(new RecipeIngredient(ingredientId, quantity, unit));
     }
-
 }

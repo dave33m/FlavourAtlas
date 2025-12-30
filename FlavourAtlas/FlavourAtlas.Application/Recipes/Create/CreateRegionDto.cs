@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FlavourAtlas.Application.Recipes.Create
 {
-    public sealed record CreateRecipeIngredientRequest(
-    Guid IngredientId,
-    decimal Quantity,
-    string Unit
-);
+    public class CreateRegionDto
+    {
+        public string Name { get; set; } = null!;
+    }
+
 }
