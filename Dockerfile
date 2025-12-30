@@ -2,22 +2,19 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# copy solution file
-COPY FlavourAtlas.sln ./
-
-# copy project files
+# copy project files first (for restore)
 COPY FlavourAtlas.Api/FlavourAtlas.Api.csproj FlavourAtlas.Api/
 COPY FlavourAtlas.Application/FlavourAtlas.Application.csproj FlavourAtlas.Application/
 COPY FlavourAtlas.Domain/FlavourAtlas.Domain.csproj FlavourAtlas.Domain/
 COPY FlavourAtlas.Infrastructure/FlavourAtlas.Infrastructure.csproj FlavourAtlas.Infrastructure/
 
-# restore dependencies
-RUN dotnet restore FlavourAtlas.sln
+# restore via API project
+RUN dotnet restore FlavourAtlas.Api/FlavourAtlas.Api.csproj
 
-# copy everything else
+# copy the rest of the source
 COPY . .
 
-# build & publish api
+# publish api
 RUN dotnet publish FlavourAtlas.Api/FlavourAtlas.Api.csproj -c Release -o /app/publish
 
 # ---------- RUNTIME ----------
